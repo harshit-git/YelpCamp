@@ -11,14 +11,21 @@ var express    = require('express'),
     methodOverride = require('method-override'),
     Campground = require('./models/campground'),
     Comment    = require('./models/comment'),
-    User       = require('./models/user')
-    seedDB     = require('./seeds.js');
+    User       = require('./models/user'),
+    seedDB     = require('./seeds.js'),
+    MongoClient = require('mongodb').MongoClient;
+
   
 var campgroundRoutes = require('./routes/campgrounds'),
     commentRoutes    = require('./routes/comments'),
     indexRoutes       = require('./routes/index');
 
-mongoose.connect("mongodb://harshit:<happy>@cluster0-shard-00-00-tvfpv.mongodb.net:27017,cluster0-shard-00-01-tvfpv.mongodb.net:27017,cluster0-shard-00-02-tvfpv.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority", { useNewUrlParser: true } );
+var uri = "mongodb://harshit:<happy>@cluster0-shard-00-00-tvfpv.mongodb.net:27017,cluster0-shard-00-01-tvfpv.mongodb.net:27017,cluster0-shard-00-02-tvfpv.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
+MongoClient.connect(uri, function(err, client) {
+    const collection = client.db("test").collection("devices");
+    // perform actions on the collection object
+      client.close();
+});    
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
