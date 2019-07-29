@@ -12,20 +12,16 @@ var express    = require('express'),
     Campground = require('./models/campground'),
     Comment    = require('./models/comment'),
     User       = require('./models/user'),
-    seedDB     = require('./seeds.js'),
-    MongoClient = require('mongodb').MongoClient;
-
+    seedDB     = require('./seeds.js');
   
 var campgroundRoutes = require('./routes/campgrounds'),
     commentRoutes    = require('./routes/comments'),
     indexRoutes       = require('./routes/index');
 
-var uri = "mongodb://harshit:<happy>@cluster0-shard-00-00-tvfpv.mongodb.net:27017,cluster0-shard-00-01-tvfpv.mongodb.net:27017,cluster0-shard-00-02-tvfpv.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
-MongoClient.connect(uri, function(err, client) {
-    const collection = client.db("test").collection("devices");
-    // perform actions on the collection object
-      client.close();
-});    
+//mongoose.connect("mongodb://localhost/yelp_camp");
+//mongoose.connect("mongodb://harshit:<happy>@cluster0-shard-00-00-tvfpv.mongodb.net:27017,cluster0-shard-00-01-tvfpv.mongodb.net:27017,cluster0-shard-00-02-tvfpv.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority", {useNewUrlParser: true});
+mongoose.connect("mongodb+srv://harshit:happy@cluster0-tvfpv.mongodb.net/test?retryWrites=true&w=majority");
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -58,8 +54,12 @@ app.use(indexRoutes);
 app.use('/campgrounds/:id/comments', commentRoutes);
 app.use('/campgrounds', campgroundRoutes);
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 8000;
-}
-app.listen(port);
+// let port = process.env.PORT;
+// if (port == null || port == "") {
+//   port = 8000;
+// }
+// app.listen(port);
+
+app.listen(3000, function(){
+  console.log("Yelpcamp started!!")
+});
