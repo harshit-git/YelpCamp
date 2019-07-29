@@ -18,8 +18,11 @@ var campgroundRoutes = require('./routes/campgrounds'),
     commentRoutes    = require('./routes/comments'),
     indexRoutes       = require('./routes/index');
 
+//LOCAL DB
 //mongoose.connect("mongodb://localhost/yelp_camp");
-mongoose.connect("mongodb+srv://harshit:happy@cluster0-tvfpv.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
+//Atlas DB
+//mongoose.connect("mongodb+srv://harshit:happy@cluster0-tvfpv.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
+mongoose.connect(process.env.DATABASEURL);
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
