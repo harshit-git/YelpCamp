@@ -22,7 +22,7 @@ var campgroundRoutes = require('./routes/campgrounds'),
 //mongoose.connect("mongodb://localhost/yelp_camp");
 //Atlas DB
 //mongoose.connect("mongodb+srv://harshit:happy@cluster0-tvfpv.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
-mongoose.connect(process.env.DATABASEURL);
+mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
