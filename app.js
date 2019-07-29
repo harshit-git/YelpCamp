@@ -62,6 +62,7 @@ if (port == null || port == "") {
 }
 app.listen(port);
 
+// Local port
 // app.listen(3000, function(){
 //   console.log("Yelpcamp started!!")
 // });
