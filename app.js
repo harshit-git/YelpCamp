@@ -21,7 +21,6 @@ var campgroundRoutes = require('./routes/campgrounds'),
 //LOCAL DB
 //mongoose.connect("mongodb://localhost/yelp_camp");
 //Atlas DB
-//mongoose.connect("mongodb+srv://harshit:happy@cluster0-tvfpv.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
 mongoose.connect(process.env.DATABASEURL, { useNewUrlParser: true });
 
 app.use(bodyParser.urlencoded({extended: true}));
